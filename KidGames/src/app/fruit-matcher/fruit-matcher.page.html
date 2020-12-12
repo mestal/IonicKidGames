@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Level 3</ion-title>
+    <ion-title>Fruit Matcher</ion-title>
     <ion-buttons slot="start">
 		  <ion-back-button></ion-back-button>
 		</ion-buttons>
@@ -13,7 +13,7 @@
 	<div align="center" *ngIf="!startGame">
 		<br>
 		<h2>Match all cards to win!</h2>
-		<p>You have a total of <b>{{userLife}}</b> tries.</p>
+		<!-- <p>You have a total of <b>{{userLife}}</b> tries.</p> -->
 		<br>
 		<h4>Start in <span style="color:#CC0000;font-size:24px;">{{countDown}}</span>...</h4>
 	</div>
@@ -40,9 +40,9 @@
 	<div align="center" *ngIf="startGame && gameState == 'init'">
 		<br>
 		<ion-row>
-			<ion-col col-9>
+			<!-- <ion-col col-9>
 				<p>You have <span style="color:#00CC00; font-size: 24px;">{{userLife}}</span> tries...</p>
-			</ion-col>
+			</ion-col> -->
 			<ion-col>
 				<p><span style="color:#CC0000; font-size: 24px;">{{shownTime}}</span></p>
 			</ion-col>
@@ -52,7 +52,7 @@
 	<!-- Show Win screen -->
 	<div *ngIf="gameState =='win'" align="center">
 		<br>
-		<p>You have <span style="color:#00CC00; font-size: 24px;">WON</span> this one!</p>
+		<p>You have <span style="color:#00CC00; font-size: 24px;">WON</span></p>
 		<p>Would you like to play again?</p>
 		<br>
 		<ion-button size="large" color="danger" (click)="restartGame()">
@@ -62,7 +62,7 @@
 	</div>
 
 	<!-- Show Lose screen -->
-	<div *ngIf="gameState == 'lose'" align="center">
+	<!-- <div *ngIf="gameState == 'lose'" align="center">
 		<br>
 		<p>You have <span style="color:#CC0000; font-size: 24px;">LOST</span> this one!</p>
 		<p>Would you like to try again?</p>
@@ -71,6 +71,6 @@
 			<ion-icon name="repeat"></ion-icon>
 			&nbsp; &nbsp; Try Again
 		</ion-button>
-	</div>
+	</div> -->
 
 </ion-content>

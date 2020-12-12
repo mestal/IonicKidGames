@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-fruit-matcher-level-2',
-  templateUrl: './fruit-matcher-level-2.page.html',
-  styleUrls: ['./fruit-matcher-level-2.page.scss'],
+  selector: 'app-fruit-matcher',
+  templateUrl: './fruit-matcher.page.html',
+  styleUrls: ['./fruit-matcher.page.scss'],
 })
-export class FruitMatcherLevel2Page implements OnInit {
+export class FruitMatcherPage implements OnInit {
 
   public gameState;       // Keep track of current game state
   public startGame;       // Will set to false to display intro
@@ -16,9 +16,9 @@ export class FruitMatcherLevel2Page implements OnInit {
   public interTime;       // Timer: 1 second for in game tracking
   public interCount;      // Timer: 1 second for in game counter
   
-  public cardsTotal = 14;	// Total cards to match (divided by 2)
+  public cardsTotal = 16;	// Total cards to match (divided by 2)
   public cardsArray = [];	// Store all card pairs
-  public userLife = 4;		// Total amount of tries user gets
+  public userLife = 5;		// Total amount of tries user gets
   public imageDir = '../assets/img/fruits/';
   public images = ['apple', 'strawberry', 'apple-green', 'cherry',
   				   'grape-green', 'grape-purple', 'peach', 'pear'];
@@ -86,7 +86,7 @@ export class FruitMatcherLevel2Page implements OnInit {
           this.debugText = "Cards don't match!";
           this.userLife -= 1;
           this.resetSelects();
-          if (this.userLife <= 0) this.loseCon();
+          //if (this.userLife <= 0) this.loseCon();
         }
       }, 1000);
     }
@@ -108,12 +108,12 @@ export class FruitMatcherLevel2Page implements OnInit {
     this.gameState = 'load';      // Keep track of current game state
     this.startGame = false;       // Will set to false to display intro
     this.countDown = 3;           // Lets show 3 second countDown
-    this.totalTime = 60;          // How long the player has to win
+    this.totalTime = 0;          // How long the player has to win
     this.countTime = 0;           // Elapsed time while game is playing
     this.shownTime = 0;           // Time shown as string format
     this.interCount = null;       // Timer: 1 second for in game counter
 
-    this.userLife = 4;
+    //this.userLife = 5;
     this.resetSelects();
     this.populateCards();
     this.shuffle(this.cardsArray);
@@ -130,17 +130,17 @@ export class FruitMatcherLevel2Page implements OnInit {
         clearInterval(this.interCount);
         this.interCount = null;
       }
-      else this.countDown -= 1;
+      else this.countDown = 1;
     }, 1000);
 
     // This timer will keep track of time once the game starts
     setTimeout(() => {
       this.interTime = setInterval(() => {
-        if (this.countTime >= this.totalTime) this.loseCon();
+        //if (this.countTime >= this.totalTime) this.loseCon();
         if (this.gameState == 'init') {
           this.countTime += 1;  // Add 1 second to counter
-          var minutes = Math.floor((this.totalTime-this.countTime) / 60);
-          var seconds = (this.totalTime-this.countTime) - minutes * 60;
+          var minutes = Math.floor((this.totalTime + this.countTime) / 60);
+          var seconds = (this.totalTime+this.countTime) - minutes * 60;
           this.shownTime = minutes.toString() + ":" + seconds.toString();
         }
         else {
